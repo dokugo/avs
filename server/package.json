@@ -3,15 +3,16 @@
   "name": "aviasales",
   "version": "0.1.0",
   "scripts": {
-    "build": "npm run tsc",
-    "start": "node dist/server.js",
+    "build": "tsc",
+    "start": "node build/server.js",
     "prod": "concurrently \"npm run build\" \"npm start\"",
-    "build-dev": "tsc -w",
-    "start-dev": "nodemon --inspect dist/server.js",
-    "dev": "concurrently \"npm run build-dev\" \"npm run start-dev\""
+    "build:dev": "tsc -w",
+    "start:dev": "nodemon --inspect=0.0.0.0:9229 build/server.js",
+    "dev": "concurrently \"npm run build:dev\" \"npm run start:dev\""
   },
   "dependencies": {
     "cors": "^2.8.4",
+    "dotenv": "^8.2.0",
     "express": "~4.16.0",
     "express-validator": "^6.6.1",
     "pg": "^8.3.0"

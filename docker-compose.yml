@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+
+  frontend:
+    container_name: "frontend"
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: aviasales/client
+    volumes:
+      - './client:/app'
+      - '/app/node_modules'
+    ports:
+      - "3000:3000"
+    environment:
+      CHOKIDAR_USEPOLLING: 'true'
+    stdin_open: true
+
+  backend:
+    container_name: "backend"
+    depends_on:
+      - postgres
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: aviasales/server
+    volumes:
+      - './server:/app'
+      - '/app/node_modules'
+    ports:
+      - "9000:9000"
+      - "9229:9229"
+    environment:
+      CHOKIDAR_USEPOLLING: 'true'
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    stdin_open: true
+
+  postgres:
+    container_name: "postgres"
+    image: "postgres"
+    volumes:
+      - postgresdata:/var/lib/postgres
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: /var/lib/postgresql/postgresdata
+
+  pgadmin:
+    container_name: pgadmin
+    depends_on:
+      - postgres
+    image: dpage/pgadmin4
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+    ports:
+      - 5050:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+
+volumes:
+  postgresdata:
+  pgadmindata:      

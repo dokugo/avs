@@ -12,7 +12,7 @@
 
 # production
 /client/build
-/server/dist
+/server/build
 
 # misc
 .DS_Store
@@ -26,3 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .vscode
+
+# env vars
+.env
