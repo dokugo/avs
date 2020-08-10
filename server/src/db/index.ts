@@ -1,17 +1,18 @@
 import { Pool } from 'pg'
 
+import { pg } from '../config'
+
 const db = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'aviasales',
-  password: 'admin',
-  port: 5432,
+  host: pg.host,
+  port: pg.port,
+  user: pg.user,
+  password: pg.password,
+  database: pg.database,
 })
 
 const initialQuery = `
-  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
   CREATE TABLE IF NOT EXISTS users (
-    id uuid DEFAULT uuid_generate_v4 () NOT NULL,
+    id text,
     shared boolean,
     email text,
     PRIMARY KEY (id)
