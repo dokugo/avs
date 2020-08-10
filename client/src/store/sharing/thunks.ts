@@ -16,7 +16,7 @@ const requestUser = () => async (
   try {
     const user = getState().sharing.user
 
-    const id = user?.id || 'undefined'
+    const id = user?.id || ''
     const response = await client.get(id)
 
     dispatch(createUser(response.payload))

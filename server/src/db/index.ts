@@ -20,7 +20,7 @@ const initialQuery = `
 `
 
 db.query(initialQuery)
-  .then(result => console.log(result))
+  .then(() => console.log(`Connected to ${pg.database} database`))
   .catch(error => console.warn(error))
 
 export default db

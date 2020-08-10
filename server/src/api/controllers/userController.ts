@@ -33,14 +33,16 @@ export const updateUser = async (req: Req, res: Res): Promise<Res> => {
     return res.status(400).json({ message: dictionary.invalidData })
   }
 
-  console.log(req.body)
-
   if (req.body?.email?.length && isBool(req.body?.shared)) {
     return res.status(400).send({ message: dictionary.oneAtATime })
   }
 
-  const set = req.body.email ? 'email' : isBool(req.body.shared) ? 'shared' : ''
+  const set = req.body.email ? 'email' : req.body.shared ? 'shared' : ''
   const param = req.body.email || req.body.shared
+
+  if (req.body.shared === false) {
+    return res.status(400).json({ message: dictionary.invalidData })
+  }
 
   if (!set.length) {
     return res.status(400).send({ message: dictionary.missingData })

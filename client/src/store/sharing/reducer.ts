@@ -42,7 +42,7 @@ const reducer = (state: State = initState, action: Actions): State => {
     }
 
     case ActionTypes.REQUEST_USER_ERROR: {
-      console.error(action.payload)
+      console.error(action.payload.message)
       return state
     }
 
