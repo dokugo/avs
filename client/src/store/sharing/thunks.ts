@@ -3,7 +3,7 @@ import { RootState } from 'store/rootReducer'
 
 import { createUser, requestUserError, updateUser } from './actions'
 import { Actions } from './actionTypes'
-import { ApiClient } from './api'
+import { client } from './api'
 import { User } from './types'
 
 type Thunk = ThunkDispatch<RootState, undefined, Actions>
@@ -17,7 +17,7 @@ const requestUser = () => async (
     const user = getState().sharing.user
 
     const id = user?.id || 'undefined'
-    const response = await ApiClient.get(id)
+    const response = await client.get(id)
 
     dispatch(createUser(response.payload))
   } catch (error) {
@@ -32,7 +32,7 @@ const requestUserUpdate = (payload: Partial<User>) => async (
   try {
     const user = getState().sharing.user
 
-    const response = await ApiClient.put({ id: user.id, ...payload })
+    const response = await client.put({ id: user.id, ...payload })
 
     dispatch(updateUser(response.payload))
   } catch (error) {

@@ -1,56 +1,24 @@
 import React, { FC } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'store/rootReducer'
-import { requestUserUpdate } from 'store/sharing/thunks'
 import styled from 'styled-components/macro'
 
-const ButtonComponent: FC<StoreProps> = ({
-  isEmailValid,
-  isEmailSent,
-  emailText,
-  requestUserUpdate,
-}) => {
-  const handeClick = (): void => {
-    requestUserUpdate({ email: emailText })
-  }
+import { Box as Container } from '../common'
 
+interface Props {
+  active: boolean
+  disabled: boolean
+}
+
+const ButtonComponent: FC<Props> = ({ active, disabled }) => {
   return (
     <Container>
-      <Button
-        active={isEmailValid}
-        disabled={isEmailSent}
-        onSubmit={handeClick}
-        onClick={handeClick}
-      >
+      <Button active={active} disabled={disabled}>
         Отправить
       </Button>
     </Container>
   )
 }
 
-const mapState = (
-  state: RootState
-): {
-  isEmailValid: boolean
-  isEmailSent: boolean
-  emailText: string
-} => ({
-  isEmailValid: state.sharing.isEmailValid,
-  isEmailSent: state.sharing.isEmailSent,
-  emailText: state.sharing.emailText,
-})
-
-const mapDispatch = { requestUserUpdate }
-
-const connector = connect(mapState, mapDispatch)
-type StoreProps = ConnectedProps<typeof connector>
-export default connector(ButtonComponent)
-
-// Styles
-
-const Container = styled.section`
-  margin: 0 auto;
-`
+export default ButtonComponent
 
 const Button = styled.button<{ active: boolean; disabled: boolean }>`
   background: ${({ active, theme }): string =>
@@ -78,5 +46,20 @@ const Button = styled.button<{ active: boolean; disabled: boolean }>`
       ${({ active, theme }): string =>
         active ? theme.color.darkpink : theme.color.white};
     color: ${({ theme }): string => theme.color.white};
+  }
+
+  :focus {
+    background: ${({ active, theme }): string =>
+      active ? theme.color.darkpink : 'none'};
+    border: 2px solid
+      ${({ active, theme }): string =>
+        active ? theme.color.darkpink : theme.color.white};
+    color: ${({ theme }): string => theme.color.white};
+  }
+
+  @media (max-width: 720px) {
+    width: 260px;
+    height: 50px;
+    font-size: 30px;
   }
 `

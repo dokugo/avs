@@ -9,7 +9,7 @@ export const updateUser = (user: User): Actions => {
   return { type: ActionTypes.UPDATE_USER, payload: user }
 }
 
-export const requestUserError = (payload: string): Actions => {
+export const requestUserError = (payload: Error): Actions => {
   return { type: ActionTypes.REQUEST_USER_ERROR, payload: payload }
 }
 

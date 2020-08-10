@@ -1,18 +1,11 @@
+import './fonts/shnobel.css'
+
 import React, { FC } from 'react'
 import styled, { createGlobalStyle } from 'styled-components/macro'
 import { normalize } from 'styled-normalize'
 
 export const GlobalStyle = createGlobalStyle`  
   ${normalize}
-
-  @font-face {
-    font-family: 'Shnobel';
-    src: 
-      url('/fonts/Shnobel-Regular.woff') format('woff2'),
-      url('/fonts/Shnobel-Regular.woff') format('woff'),
-      url('/fonts/Shnobel-Regular.otf') format('otf'),
-      url('/fonts/Shnobel-Regular.ttf') format('ttf'),
-  }
 
   html {
     font-size: 16px;
@@ -27,7 +20,10 @@ export const GlobalStyle = createGlobalStyle`
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   min-height: 100vh;
+  padding: 0 10px;
+  width: fit-content;
 `
 
 export const Header: FC = () => {
@@ -39,7 +35,7 @@ export const Header: FC = () => {
         rel="noopener noreferrer"
       >
         <LogoBox>
-          <Logo src="static/logo.svg" height="29" width="139" />
+          <Logo />
         </LogoBox>
       </Link>
     </HeaderElement>
@@ -52,9 +48,16 @@ const LogoBox = styled.div`
   display: flex;
 `
 
-const Logo = styled.img`
-  height: fit-content;
-  max-width: 139px;
+const Logo = styled.div`
+  background: url('img/logo.svg');
+  height: 29px;
+  width: 139px;
+
+  @media (max-width: 720px) {
+    height: 33px;
+    width: 34px;
+    background: url('img/logo-small.svg');
+  }
 `
 
 const Link = styled.a`
@@ -67,6 +70,11 @@ const Link = styled.a`
     border-radius: 3px;
     box-shadow: 0 0 0 2px ${({ theme }): string => theme.color.darkpink};
     outline: none;
+  }
+
+  @media (max-width: 720px) {
+    margin-left: 0;
+    margin-top: 10px;
   }
 `
 
@@ -82,5 +90,28 @@ export const Main = styled.main`
 
   @media (max-width: 980px) {
     width: 720px;
+  }
+
+  @media (max-width: 720px) {
+    width: auto;
+    padding-bottom: 10px;
+  }
+
+  ::after {
+    background: url('/img/clouds.svg');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: '';
+    display: block;
+    height: 100vh;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity 500ms;
+    width: 100vw;
+    z-index: -3;
   }
 `

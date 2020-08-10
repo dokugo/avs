@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'Shnobel';
+  src: 
+    url('./shnobel/Shnobel-Regular.woff2') format('woff2'),
+    url('./shnobel/Shnobel-Regular.woff') format('woff'),
+    url('./shnobel/Shnobel-Regular.otf') format('otf'),
+    url('./shnobel/Shnobel-Regular.ttf') format('ttf')
+}

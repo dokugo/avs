@@ -15,7 +15,7 @@ const initState: State = {
   user: storedUser,
   emailText: '',
   isEmailValid: false,
-  isEmailSent: true,
+  isEmailSent: false,
 }
 
 const reducer = (state: State = initState, action: Actions): State => {

@@ -3,6 +3,7 @@ import { DefaultTheme } from 'styled-components'
 const theme: DefaultTheme = {
   color: {
     pink: 'rgb(205, 113, 142)',
+    mediumpink: 'rgb(215, 141, 164)',
     darkpink: 'rgb(127, 65, 86)',
     white: 'rgb(255, 255, 255)',
     vk: 'rgb(69, 102, 142)',

@@ -19,7 +19,7 @@ type updateUser = {
 
 type requestUserError = {
   type: typeof ActionTypes.REQUEST_USER_ERROR
-  payload: string
+  payload: Error
 }
 
 type changeEmailText = {
