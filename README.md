@@ -1,7 +1,7 @@
 Run with Docker:
 
 1. Setup env vars via `.env` file in the root folder
-2. Run `docker-compose -d --build`
+2. Run `docker-compose up -d --build`
 
 If you don't want to use Docker (you'll have to setup the database by yourself):
 
