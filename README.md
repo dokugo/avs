@@ -1,8 +1,14 @@
-`npm install`
+Run with Docker:
 
-`npm run dev`
+1. Setup env vars via `.env` file in the root folder
+2. Run `docker-compose -d --build`
 
-If you want to use VS Code with local ESLint installation:
+If you don't want to use Docker (you'll have to setup the database by yourself):
+
+1. Setup env vars via `.env` files in `client` and `server` folders
+2. Run `npm install` and `npm run dev` from the root folder
+
+If you want to use local ESLint installation with VS Code:
 
 - Create `.vscode` folder in root directory
 - Create `settings.json` file inside that folder
