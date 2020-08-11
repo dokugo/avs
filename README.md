@@ -6,7 +6,7 @@ Run with Docker:
 If you don't want to use Docker (you'll have to setup the database by yourself):
 
 1. Setup env vars via `.env` files in `client` and `server` folders
-2. Run `npm install` and `npm run dev` from the root folder
+2. Run `npm run setup` and `npm run dev` from the root folder
 
 If you want to use local ESLint installation with VS Code:
 
